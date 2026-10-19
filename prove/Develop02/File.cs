@@ -17,7 +17,7 @@ public class File
         {
             foreach (Entry entry in journal._entries)
             {
-                outputFile.Write($"{entry.GetDateString()}|{entry.GetPrompt()}|{entry.GetResponse()}| {entry.GetOSSaveString()}");
+                outputFile.WriteLine($"{entry.GetDateString()}|{entry.GetPrompt()}|{entry.GetResponse()}| {entry.GetOSSaveString()}");
             }
 
         }
