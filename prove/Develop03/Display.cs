@@ -77,6 +77,7 @@ public class Display
         int i=0;
         int j=0;
         Console.Clear();
+            Console.WriteLine("Type out the verse. Characters will display green when correct, and when incorrect they will display red and have you retype them.");
             Console.WriteLine(_verseDisplay.GetReferenceDisplay());
             foreach (char character in chars)
             {
