@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
@@ -15,15 +16,31 @@ public class Display
     public void ShowDisplay()
     {
         
-        while (_verseDisplay.GetUnhiddenWords()!=-1)
+        string UserInput="";
+        while (_verseDisplay.GetUnhiddenWords()!=0 && _verseDisplay.GetUnhiddenWords()!=-1)
         {
             string displayString=_verseDisplay.GetDisplayString();
             Console.WriteLine(displayString);
-            Console.ReadLine();
+            UserInput=Console.ReadLine();
+            if (UserInput!="quit")
+            {
             TestVerse();
             _verseDisplay.HideRandomWord();
+            }
+            if (UserInput=="quit")
+            {
+                _verseDisplay.SetUnhiddenWords(-1);
+            }
 
         }
+            if (_verseDisplay.GetUnhiddenWords()!=-1
+            )
+            {
+            string displayString1=_verseDisplay.GetDisplayString();
+            Console.WriteLine(displayString1);
+            Console.ReadLine();
+            TestVerse();
+            }
 
     }
     private void HandleInput()
