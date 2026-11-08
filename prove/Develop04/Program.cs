@@ -22,7 +22,18 @@ class Program
         Console.WriteLine($"{activities.Count+2}:Exit");
         Console.Write("Please choose an option: ");
         string userInput= Console.ReadLine();
-        int activityNumber= int.Parse(userInput);
+        int activityNumber=-1;
+        while (activityNumber==-1)
+        {
+        try
+        {
+        activityNumber= int.Parse(userInput);
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("That is an invalid input. Please try again.");
+        }
+        }
         if (activityNumber==(activities.Count+1))
         {
             Log.DisplayLog();
