@@ -4,7 +4,7 @@ using System.Net;
 //I also added a logger. I learned how to append to a file by looking it up on Google.
 class Program
 {
-    static bool DisplayMenu()
+    public static bool DisplayMenu()
     {
         
         List<Activity> activities= new List<Activity>();
