@@ -15,14 +15,14 @@ public class GoalList
         {
             string[] lineData= data.Split("|");
             string type=lineData[0];
-            if (type=="Points")
+            if (type =="Points")
             {
             }
-            else if (type=="Goal")
+            else if (type == "Goal")
             {
                 
             }
-            else if (type=="Earned Milestone")
+            else if (type == "Earned Milestone")
             {
                 
             }
@@ -34,14 +34,14 @@ public class GoalList
         foreach (string data in saveData)
         {
             string[] lineData= data.Split("|");
-            if(lineData[0]=="Points")
+            if(lineData[0] == "Points")
             {
-                _pointsEarned= int.Parse(lineData[1]);
+                _pointsEarned = int.Parse(lineData[1]);
             }
-            else if(lineData[0]=="Goal")
+            else if(lineData[0] == "Goal")
             {
                 string[] goalData=lineData[1].Split(":");
-                if (goalData[0]=="Simple")
+                if (goalData[0] == "Simple")
                 {
                     _goalList.Add(new SimpleGoal(lineData[1]));
                 }
@@ -67,11 +67,11 @@ public class GoalList
        saveInfo+=$"Points|{_pointsEarned}\n";
         foreach(Goal goal in _goalList)
         {
-            saveInfo+=$"Goal|{goal.GetSaveInfo()}";
+            saveInfo += $"Goal|{goal.GetSaveInfo()}";
         }
         foreach (Milestone milestone in _milestonesEarned)
         {
-            saveInfo+=$"Earned Milestone|{milestone.GetSaveInfo()}";
+            saveInfo += $"Earned Milestone|{milestone.GetSaveInfo()}";
         }
        return saveInfo;
     }

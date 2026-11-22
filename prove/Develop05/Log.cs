@@ -5,7 +5,7 @@ public class Log()
 {
     public static void Write(string message, EventLevel eventLevel)
     {
-        using (StreamWriter log= new StreamWriter("goalprogram.log",true))
+        using (StreamWriter log = new StreamWriter("goalprogram.log",true))
         {
             log.WriteLine($"{DateTime.Now} [{eventLevel.ToString()}]: {message}");
         }
@@ -13,7 +13,7 @@ public class Log()
     }
     public static void WriteFull(string message, EventLevel eventLevel)
     {
-        using (StreamWriter log= new StreamWriter("goalprogramfull.log",true))
+        using (StreamWriter log = new StreamWriter("goalprogramfull.log",true))
         {
             log.WriteLine($"{DateTime.Now} [{eventLevel.ToString()}]: {message}");
         }

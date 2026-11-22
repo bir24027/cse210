@@ -7,15 +7,15 @@ using System.Runtime.InteropServices;
 
 public class Menu
 {
-    Dictionary <string,Action> _options= new Dictionary<string, Action>();
-    FileManager _fileManager= new FileManager();
-    GoalList _goalList= new GoalList();
+    Dictionary <string,Action> _options = new Dictionary<string, Action>();
+    FileManager _fileManager = new FileManager();
+    GoalList _goalList = new GoalList();
     Settings _settingsManager;
     bool _exit= false;
 
     public Menu()
     {
-        _settingsManager=new Settings(this);
+        _settingsManager =new Settings(this);
         _options.Add("Create Goal",CreateGoal);
         _options.Add("Complete Goal",CompleteGoal);
         _options.Add("View Goals",DisplayGoals);
@@ -33,7 +33,7 @@ public class Menu
     {
         while (!_exit)
         {
-            Action selection=DisplayMenu(_options, $"You currently have {_goalList.GetPoints()} points.");
+            Action selection = DisplayMenu(_options, $"You currently have {_goalList.GetPoints()} points.");
             Console.Clear();
             Console.Write("\x1b[3J");
             selection();
@@ -45,24 +45,24 @@ public class Menu
     }
     public static Action DisplayMenu(Dictionary <string, Action> options, string topMessage)
     {
-        int i=0;
-        int selected=0;
+        int i = 0;
+        int selected = 0;
         string startString;
         string endString;
         void emptyAction()
         {
             
         }
-        Action selectedAction=emptyAction;
-        List <Action> actions= new List<Action>();
+        Action selectedAction = emptyAction;
+        List <Action> actions = new List<Action>();
         foreach(KeyValuePair<string,Action> option in options)
         {
             actions.Add(option.Value);
         }
 
-        Console.CursorVisible=false;
+        Console.CursorVisible = false;
         
-        bool optionSelected=false;
+        bool optionSelected = false;
         while(!optionSelected)
         {
         Console.Clear();
@@ -71,14 +71,14 @@ public class Menu
         i=0;
         foreach (KeyValuePair<string,Action> option in options)
         {  
-            startString="  ";
-            endString="  ";
+            startString = "  ";
+            endString = "  ";
             if (i==selected)
             {
                 Console.BackgroundColor= ConsoleColor.White;
                 Console.ForegroundColor= ConsoleColor.Black;
-                startString=">>";
-                endString="<<";
+                startString = ">>";
+                endString = "<<";
             }
             Console.WriteLine($"{startString}{option.Key}{endString}");
             i++;
@@ -86,39 +86,39 @@ public class Menu
         } 
         ConsoleKeyInfo keyInfo =Console.ReadKey(intercept:true);
         ConsoleKey key= keyInfo.Key;
-        if (key== ConsoleKey.UpArrow)
+        if (key == ConsoleKey.UpArrow)
         {
             selected--;
-            if (selected<=-1)
+            if (selected <= -1)
             {
-                selected=options.Count-1;
+                selected = options.Count-1;
             }
         }
-        else if(key ==ConsoleKey.DownArrow)
+        else if(key == ConsoleKey.DownArrow)
         {
             selected++;
-            if (selected>=options.Count)
+            if (selected >= options.Count)
             {
                 selected=0;
             }
         }
-        else if(key== ConsoleKey.Enter)
+        else if(key == ConsoleKey.Enter)
         {
-            optionSelected=true;
-             selectedAction=actions[selected];
+            optionSelected = true;
+             selectedAction = actions[selected];
         }
         else if(key==ConsoleKey.Escape)
             {
-                optionSelected=true;
+                optionSelected = true;
             }
         }
-        Console.CursorVisible=true;
+        Console.CursorVisible = true;
         return selectedAction;
     }
     private void Save()
     {
         Console.Write("Please enter a file path (leave blank for file dialog or type Default for default location): ");
-        string filePath= Console.ReadLine()??"";
+        string filePath = Console.ReadLine()??"";
         try
         {
             _fileManager.Save(_goalList,filePath);
@@ -143,7 +143,7 @@ public class Menu
         {
             Console.Write("Please enter a file path (leave blank for file dialog or type Default for default location): ");
             string filePath=Console.ReadLine()??"";
-            _goalList =_fileManager.Load(filePath);
+            _goalList = _fileManager.Load(filePath);
         }
         catch (Exception exception)
         {
@@ -161,7 +161,7 @@ public class Menu
     }
     private void Exit()
     {
-        _exit=true;
+        _exit = true;
     }
     private void CreateGoal()
     {
@@ -169,7 +169,7 @@ public class Menu
         goalOptions.Add("Simple Goal",CreateSimpleGoal);
         goalOptions.Add("Checklist Goal",CreateChecklistGoal);
         goalOptions.Add("Eternal Goal", CreateEternalGoal);
-        Action CreateGoalType =DisplayMenu(goalOptions, "Which type of goal would you like to create?");
+        Action CreateGoalType = DisplayMenu(goalOptions, "Which type of goal would you like to create?");
         CreateGoalType();
 
     }
@@ -189,36 +189,36 @@ public class Menu
     {
        Console.CursorVisible=true; 
        Console.Write($"Please enter the name of the new {goalType} goal: ");
-       string name= Console.ReadLine()??"";
+       string name = Console.ReadLine()??"";
        Console.Write("Please enter the description of the goal: ");
-       string description= Console.ReadLine()??"";
-       bool pointsCompletedSuccessfully=false;
-       int points=0;
+       string description = Console.ReadLine()??"";
+       bool pointsCompletedSuccessfully = false;
+       int points = 0;
        do{
         try{
         Console.Write($"How many points is it worth? ");
-        points= int.Parse(Console.ReadLine()??"0");
-        pointsCompletedSuccessfully=true;
+        points = int.Parse(Console.ReadLine()??"0");
+        pointsCompletedSuccessfully = true;
         }
         catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid number!");
             }
        }while (!pointsCompletedSuccessfully);
-       if (goalType=="Checklist")
+       if (goalType == "Checklist")
         {
             Console.Write("How many times should it be completed before you get the bonus? ");
-            int timesRequired= int.Parse(Console.ReadLine()??"1");
+            int timesRequired = int.Parse(Console.ReadLine()??"1");
             Console.Write("How many bonus points? ");
-            int bonus= int.Parse(Console.ReadLine()??"0");
+            int bonus = int.Parse(Console.ReadLine()??"0");
             _goalList.AddGoal(new ChecklistGoal(name, description, points, bonus, timesRequired));
 
         }
-        else if (goalType=="Simple")
+        else if (goalType == "Simple")
         {
             _goalList.AddGoal(new SimpleGoal(name,description,points));
         }
-        else if (goalType=="Eternal")
+        else if (goalType == "Eternal")
         {
             _goalList.AddGoal(new EternalGoal(name,description,points));
         }
@@ -227,7 +227,7 @@ public class Menu
     }
     private void CompleteGoal()
     {
-        Dictionary <string, Action> completeOptions= new Dictionary<string, Action>();
+        Dictionary <string, Action> completeOptions = new Dictionary<string, Action>();
         try
         {
             foreach(Goal goal in  _goalList.GetGoalList())

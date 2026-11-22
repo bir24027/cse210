@@ -6,7 +6,7 @@ public class Settings
     bool _autoSave=false;
     string _settingsSaveFile;
     private string _defaultSaveFile="";
-    FileManager _settingsFileManager=new FileManager();
+    FileManager _settingsFileManager = new FileManager();
     Menu _menu;
     public Settings( Menu menu)
     {
@@ -18,13 +18,13 @@ public class Settings
             foreach (string setting in settings)
             {
                 string[] settingDetails=setting.Split("|");
-                if(settingDetails[0]=="Autosave")
+                if(settingDetails[0] == "Autosave")
                 {
-                    _autoSave=bool.Parse(settingDetails[1]);
+                    _autoSave = bool.Parse(settingDetails[1]);
                 }
-                else if(settingDetails[0]=="Save Location")
+                else if(settingDetails[0] == "Save Location")
                 {
-                    _defaultSaveFile=settingDetails[1];
+                    _defaultSaveFile = settingDetails[1];
                 }
             }
             if (_autoSave)
@@ -39,7 +39,7 @@ public class Settings
     }
     public void SaveSettings()
     {
-        using (StreamWriter settingsFile= new StreamWriter(_settingsSaveFile))
+        using (StreamWriter settingsFile = new StreamWriter(_settingsSaveFile))
         {
             settingsFile.WriteLine($"Autosave|{_autoSave}");
             settingsFile.WriteLine($"Save Location|{_defaultSaveFile}");
@@ -59,7 +59,7 @@ public class Settings
     }
     public void SettingsEditor()
     {
-        Dictionary <string, Action> settingOptions=new Dictionary<string, Action> ();
+        Dictionary <string, Action> settingOptions = new Dictionary<string, Action> ();
         settingOptions.Add("Toggle Auto Save",SetAutoSave);
         settingOptions.Add("Choose default save location",SetDefaultFile);
         Menu.DisplayMenu(settingOptions,"Settings")();
@@ -75,7 +75,7 @@ public class Settings
     public void SetDefaultFile()
     {
         try{
-        _defaultSaveFile= FileManager.SaveDialog();
+        _defaultSaveFile = FileManager.SaveDialog();
         }
         catch (Exception e)
         {

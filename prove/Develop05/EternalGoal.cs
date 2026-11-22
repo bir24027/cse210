@@ -1,14 +1,14 @@
 public class EternalGoal : Goal
 {
-    int _timesCompleted=0;
+    int _timesCompleted = 0;
     public EternalGoal(string name,string description, int pointValue):base(name,description, pointValue,"Eternal")
     {
         
     }
     public EternalGoal(string saveInfo):base(saveInfo)
     {
-        string[] saveData= saveInfo.Split(":");
-        _timesCompleted=int.Parse(saveData[5]);
+        string[] saveData = saveInfo.Split(":");
+        _timesCompleted = int.Parse(saveData[5]);
     }
     public override void Display()
     {
@@ -22,7 +22,7 @@ public class EternalGoal : Goal
     public override string GetSaveInfo()
     {
         string saveString= base.GetSaveInfo();
-        saveString+=$":{_timesCompleted}";
+        saveString += $":{_timesCompleted}";
         return saveString;
     }
 }

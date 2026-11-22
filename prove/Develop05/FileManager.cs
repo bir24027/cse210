@@ -47,17 +47,17 @@ public class FileManager
         loadDialog.AddFilter("Text Files",".txt");
         DialogResult result= loadDialog.Open(out string selectedFile);
         loadDialog.Dispose();
-        if (result==DialogResult.Okay)
+        if (result == DialogResult.Okay)
         {
             return selectedFile;
         }
-        else if(result==DialogResult.Cancel)
+        else if(result == DialogResult.Cancel)
         {
             Console.WriteLine("The user canceled the load operation.");
             throw _canceledException;
 
         }
-        else if (result==DialogResult.Error)
+        else if (result == DialogResult.Error)
         {
             Console.WriteLine("An unknown error occured.");
             throw _errorException;
@@ -75,11 +75,11 @@ public class FileManager
     {
         savePath=savePath.Trim();
         string chosenFile;
-        if (savePath=="Default")
+        if (savePath == "Default")
         {
-            chosenFile=_saveLocation;
+            chosenFile = _saveLocation;
         }
-        else if (savePath=="")
+        else if (savePath == "")
         {
 
                 chosenFile=SaveDialog();
@@ -97,23 +97,23 @@ public class FileManager
     public GoalList Load(string loadPath)
     {
         string selectedFile="";
-        if (loadPath=="Default")
+        if (loadPath == "Default")
         {
-            selectedFile=_saveLocation;
+            selectedFile = _saveLocation;
         }
          else if (loadPath=="")
         {
-            selectedFile=LoadDialog();
+            selectedFile = LoadDialog();
 
         }
         else
         {
-            selectedFile=loadPath;
+            selectedFile = loadPath;
         }
         try
         {
-        string[] loadedData= File.ReadAllLines(selectedFile);
-        GoalList loadedGoalList=new GoalList(loadedData);
+        string[] loadedData = File.ReadAllLines(selectedFile);
+        GoalList loadedGoalList = new GoalList(loadedData);
         return loadedGoalList;
         }
         catch (FileNotFoundException)
@@ -130,7 +130,7 @@ public class FileManager
     }
     public static List<Exception> GetKnownExceptions()
     {
-        List<Exception> dialogExceptions= new List<Exception>();
+        List<Exception> dialogExceptions = new List<Exception>();
         dialogExceptions.Add(_canceledException);
         dialogExceptions.Add(_errorException);
         return dialogExceptions;

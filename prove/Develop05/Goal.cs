@@ -18,11 +18,11 @@ public abstract class Goal
     }
     public Goal(string name,string description, int pointValue, string goalType)
     {
-        _name=name;
-        _pointValue=pointValue;
-        _goalType=goalType;
-        _description=description;
-        _completed=false;
+        _name = name;
+        _pointValue = pointValue;
+        _goalType = goalType;
+        _description = description;
+        _completed = false;
     }
     public virtual int Complete()
     {

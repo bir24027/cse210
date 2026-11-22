@@ -4,14 +4,14 @@ public class Milestone
     private int _pointCost;
     public Milestone(string name, int pointCost)
     {
-        _name=name;
-        _pointCost=pointCost;
+        _name = name;
+        _pointCost = pointCost;
     }
     public Milestone(string saveString)
     {
         string[] saveInfo=saveString.Split(":");
-        _name=saveInfo[0];
-        _pointCost=int.Parse(saveInfo[1]);
+        _name = saveInfo[0];
+        _pointCost = int.Parse(saveInfo[1]);
 
     }
     public string GetName()

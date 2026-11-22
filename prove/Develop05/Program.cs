@@ -11,7 +11,7 @@ class Program
     {
         try
         {
-        Menu menu= new Menu();
+        Menu menu = new Menu();
         menu.Display();
         }
         catch (Exception e)
