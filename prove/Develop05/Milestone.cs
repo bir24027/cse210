@@ -28,8 +28,7 @@ public class Milestone
     }
     public void Award()
     {
-        Console.WriteLine($"Congratulations! You have earned the {_name} award! (Press Enter to Continue)");
-        Console.ReadLine();
+        Console.WriteLine($"Congratulations! You have earned the {_name} award!");
 
     }
 }

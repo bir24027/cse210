@@ -37,6 +37,8 @@ public class Menu
             Console.Clear();
             Console.Write("\x1b[3J");
             selection();
+            Console.WriteLine("Press Enter to Continue.");
+            Console.ReadLine();
             _settingsManager.SettingsManager(_goalList);
         }
 
