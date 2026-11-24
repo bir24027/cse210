@@ -46,13 +46,13 @@ public class Settings
         }
         Console.WriteLine("Sucessfully saved.");
     }
-    public void SettingsManager(GoalList _goalList)
+    public void SettingsManager(GoalList goalList)
     {
         if (_autoSave)
         {
-            if (!(_goalList==_settingsFileManager.Load("Default")))
+            if (!(goalList==_settingsFileManager.Load("Default")))
             {
-                _settingsFileManager.Save(_goalList,_defaultSaveFile);
+                _settingsFileManager.Save(goalList,_defaultSaveFile);
 
             }
         }
