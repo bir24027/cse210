@@ -52,11 +52,11 @@ public class Menu
         int selected = 0;
         string startString;
         string endString;
-        void emptyAction()
+        void EmptyAction()
         {
             
         }
-        Action selectedAction = emptyAction;
+        Action selectedAction = EmptyAction;
         List <Action> actions = new List<Action>();
         foreach(KeyValuePair<string,Action> option in options)
         {
@@ -172,8 +172,8 @@ public class Menu
         goalOptions.Add("Simple Goal",CreateSimpleGoal);
         goalOptions.Add("Checklist Goal",CreateChecklistGoal);
         goalOptions.Add("Eternal Goal", CreateEternalGoal);
-        Action CreateGoalType = DisplayMenu(goalOptions, "Which type of goal would you like to create?");
-        CreateGoalType();
+        Action createGoalType = DisplayMenu(goalOptions, "Which type of goal would you like to create?");
+        createGoalType();
 
     }
     private void CreateSimpleGoal()
